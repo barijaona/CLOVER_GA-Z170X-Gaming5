@@ -153,22 +153,6 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>Skylake APIC fix, discovered by Pike R. Alpha</string>
-				<key>Disabled</key>
-				<false/>
-				<key>Find</key>
-				<data>
-				wegQD7bw
-				</data>
-				<key>Name</key>
-				<string>AppleAPIC</string>
-				<key>Replace</key>
-				<data>
-				vhcAAACQ
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>change 15 port limit to 30</string>
 				<key>Disabled</key>
 				<false/>
