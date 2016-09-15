@@ -1,4 +1,4 @@
-# EFI/CLOVER for Gigabyte Z170X-Gaming 5
+# EFI/CLOVER for Gigabyte Z170X-Gaming 5 based Customac
 
 This is to document the software part of a Customac build, especially the CLOVER folder in the EFI System Partition of my SSD.
 
@@ -15,3 +15,4 @@ Some personal details, especially serial numbers, will not be published in this 
 
 For increased legitibility, sources or .dsl of DSDT/SSDT patches (which are .aml files in the `ACPI/patched` folder) will be put in the `patched-sources` folder.
 
+About license. This work is published for informational use only. Any component shown here retains its own licence.
