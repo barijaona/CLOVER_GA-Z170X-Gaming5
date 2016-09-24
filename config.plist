@@ -199,9 +199,9 @@
 		<key>BiosVendor</key>
 		<string>Apple Inc.</string>
 		<key>BiosVersion</key>
-		<string>IM171.88Z.0105.B08.1604111319</string>
+		<string>IM142.88Z.0118.B12.1509081435</string>
 		<key>Board-ID</key>
-		<string>Mac-B809C3757DA9BB8D</string>
+		<string>Mac-27ADBB7B4CEE8E61</string>
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>BoardType</key>
@@ -219,9 +219,9 @@
 		<key>Mobile</key>
 		<false/>
 		<key>ProductName</key>
-		<string>iMac17,1</string>
+		<string>iMac14,2</string>
 		<key>SerialNumber</key>
-		<string>C02PQSU1H2YQ</string>
+		<string>C02JT1EGDNMP</string>
 		<key>Trust</key>
 		<false/>
 		<key>Version</key>
