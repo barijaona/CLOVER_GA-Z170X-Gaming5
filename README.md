@@ -11,6 +11,8 @@ To sumarize the hardware :
 - Graphics card : MSI GTX960 GAMING 2G
 - Wifi/Bluetooth : built from a genuine Apple Airport card, which uses a BCM94360CD chipset.
 
+Clover version currently used : r3763
+
 Some personal details, especially serial numbers, will not be published in this repository.
 
 For increased legitibility, sources or .dsl of DSDT/SSDT patches (which are .aml files in the `ACPI/patched` folder) will be put in the `patched-sources` folder.
