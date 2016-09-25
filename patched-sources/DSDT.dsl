@@ -5068,6 +5068,14 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                         Return (Zero)
                     }
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                    Return (Package()
+                    {
+                        "compatible", "pci8086,9cc1",
+                    })
+                }
             }
 
             Device (RP09)
@@ -12022,15 +12030,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
     Scope (_SB.PCI0.LPCB)
     {
-        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-        {
-            If (PCIC (Arg0))
-            {
-                Return (PCID (Arg0, Arg1, Arg2, Arg3))
-            }
-
-            Return (Zero)
-        }
 
         OperationRegion (LPC, PCI_Config, Zero, 0x0100)
         Field (LPC, AnyAcc, NoLock, Preserve)
