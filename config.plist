@@ -165,22 +165,6 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>change 15 port limit to 30</string>
-				<key>Disabled</key>
-				<false/>
-				<key>Find</key>
-				<data>
-				g72M/v//EA==
-				</data>
-				<key>Name</key>
-				<string>AppleUSBXHCIPCI</string>
-				<key>Replace</key>
-				<data>
-				g72M/v//Hw==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>10.11.4+-SKL-1912000-4_displays</string>
 				<key>Find</key>
 				<data>AQMDAw==</data>
