@@ -28,6 +28,20 @@
 					SERFRg==
 					</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change HECI to IMEI</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					SEVDSQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					SU1FSQ==
+					</data>
+				</dict>
 			</array>
 			<key>ReuseFFFF</key>
 			<false/>
@@ -43,7 +57,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-v dart=0 nv_disable=1</string>
+		<string>-v dart=0</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
@@ -124,14 +138,12 @@
 			<key>ATI</key>
 			<false/>
 			<key>Intel</key>
-			<true/>
+			<false/>
 			<key>NVidia</key>
 			<false/>
 		</dict>
 		<key>NvidiaSingle</key>
 		<false/>
-		<key>ig-platform-id</key>
-		<string>0x19120000</string>
 	</dict>
 	<key>KernelAndKextPatches</key>
 	<dict>
@@ -169,19 +181,43 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>10.11-SKL530-Port_0-DP2HDMI</string>
-				<key>Disabled</key>
-				<false/>
+				<string>10.11.4+-SKL-1912000-4_displays</string>
 				<key>Find</key>
-				<data>
-				/wAAAAEAAABAAAAA
-				</data>
+				<data>AQMDAw==</data>
 				<key>Name</key>
 				<string>AppleIntelSKLGraphicsFramebuffer</string>
 				<key>Replace</key>
-				<data>
-				AAAIAAAIAACCAAAA
-				</data>
+				<data>AQMEAw==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>10.11.4-SKL-1912000-Port_0x5-DP2HDM</string>
+				<key>Find</key>
+				<data>AQUJAAAEAACHAQAA</data>
+				<key>Name</key>
+				<string>AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Replace</key>
+				<data>AQUJAAAIAACHAQAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>10.11.4-SKL-1912000-Port_0x6-DP2HDM</string>
+				<key>Find</key>
+				<data>AgQKAAAEAACHAQAA</data>
+				<key>Name</key>
+				<string>AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Replace</key>
+				<data>AgQKAAAIAACHAQAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>10.11.4-SKL-1912000-Port_0x7-DP2HDM</string>
+				<key>Find</key>
+				<data>AwYKAAAEAACHAQAA</data>
+				<key>Name</key>
+				<string>AppleIntelSKLGraphicsFramebuffer</string>
+				<key>Replace</key>
+				<data>AwYKAAAIAACHAQAA</data>
 			</dict>
 		</array>
 	</dict>
@@ -199,9 +235,9 @@
 		<key>BiosVendor</key>
 		<string>Apple Inc.</string>
 		<key>BiosVersion</key>
-		<string>IM171.88Z.0105.B08.1604111319</string>
+		<string>IM142.88Z.0118.B12.1509081435</string>
 		<key>Board-ID</key>
-		<string>Mac-B809C3757DA9BB8D</string>
+		<string>Mac-27ADBB7B4CEE8E61</string>
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>BoardType</key>
@@ -219,9 +255,9 @@
 		<key>Mobile</key>
 		<false/>
 		<key>ProductName</key>
-		<string>iMac17,1</string>
+		<string>iMac14,2</string>
 		<key>SerialNumber</key>
-		<string>C02PQSU1H2YQ</string>
+		<string>C02JT1EGDNMP</string>
 		<key>Trust</key>
 		<false/>
 		<key>Version</key>
@@ -232,6 +268,8 @@
 		<key>InjectKexts</key>
 		<string>Yes</string>
 		<key>InjectSystemID</key>
+		<true/>
+		<key>NvidiaWeb</key>
 		<true/>
 	</dict>
 </dict>
