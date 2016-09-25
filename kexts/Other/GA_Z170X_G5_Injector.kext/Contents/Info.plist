@@ -35,7 +35,7 @@
 			<key>IOProviderClass</key>
 			<string>IOPCIDevice</string>
 		</dict>
-		<key>iMac17,1-XHC</key>
+		<key>iMac14,2-XHC</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>com.apple.driver.AppleUSBMergeNub</string>
@@ -245,7 +245,7 @@
 				</dict>
 			</dict>
 			<key>model</key>
-			<string>iMac17,1</string>
+			<string>iMac14,2</string>
 		</dict>
 	</dict>
 	<key>OSBundleRequired</key>
