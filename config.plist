@@ -12,6 +12,11 @@
 			<false/>
 			<key>Name</key>
 			<string>DSDT.aml</string>
+			<key>Fixes</key>
+			<dict>
+				<key>FixShutdown_0004</key>
+				<true/>
+			</dict>
 			<key>Patches</key>
 			<array>
 				<dict>
@@ -57,7 +62,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-v dart=0</string>
+		<string>-v dart=0 darkwake=1</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
