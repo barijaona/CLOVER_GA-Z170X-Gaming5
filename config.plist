@@ -12,11 +12,6 @@
 			<false/>
 			<key>Name</key>
 			<string>DSDT.aml</string>
-			<key>Fixes</key>
-			<dict>
-				<key>FixShutdown_0004</key>
-				<true/>
-			</dict>
 			<key>Patches</key>
 			<array>
 				<dict>
