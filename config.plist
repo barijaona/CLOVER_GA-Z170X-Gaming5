@@ -97,6 +97,11 @@
 			<key>XHCI</key>
 			<string>0x0</string>
 		</dict>
+		<key>Audio</key>
+		<dict>
+			<key>Inject</key>
+			<integer>1</integer>
+		</dict>
 		<key>USB</key>
 		<dict>
 			<key>AddClockID</key>
