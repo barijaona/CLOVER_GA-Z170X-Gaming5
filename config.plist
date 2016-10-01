@@ -74,7 +74,7 @@
 	<key>CPU</key>
 	<dict>
 		<key>UseARTFrequency</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>Devices</key>
 	<dict>
