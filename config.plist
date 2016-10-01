@@ -252,7 +252,7 @@
 		<key>SmUUID</key>
 		<string>12345678-1234-1234-1234-123456789012</string>
 		<key>Trust</key>
-		<false/>
+		<true/>
 		<key>Version</key>
 		<string>1.0</string>
 	</dict>
