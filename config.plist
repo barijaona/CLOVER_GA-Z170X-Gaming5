@@ -229,6 +229,8 @@
 		<string>Mac-27ADBB7B4CEE8E61</string>
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
+		<key>BoardSerialNumber</key>
+		<string>C02JT1EGDNMP159AE</string>
 		<key>BoardType</key>
 		<integer>10</integer>
 		<key>ChassisAssetTag</key>
@@ -247,6 +249,8 @@
 		<string>iMac14,2</string>
 		<key>SerialNumber</key>
 		<string>C02JT1EGDNMP</string>
+		<key>SmUUID</key>
+		<string>12345678-1234-1234-1234-123456789012</string>
 		<key>Trust</key>
 		<false/>
 		<key>Version</key>
