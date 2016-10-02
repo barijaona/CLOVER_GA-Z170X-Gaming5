@@ -57,7 +57,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 darkwake=1</string>
+		<string>-v dart=0 darkwake=1</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
@@ -67,14 +67,14 @@
 		<key>Secure</key>
 		<false/>
 		<key>Timeout</key>
-		<integer>5</integer>
+		<integer>10</integer>
 		<key>XMPDetection</key>
 		<string>Yes</string>
 	</dict>
 	<key>CPU</key>
 	<dict>
 		<key>UseARTFrequency</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>Devices</key>
 	<dict>
@@ -213,7 +213,7 @@
 	<key>RtVariables</key>
 	<dict>
 		<key>BooterConfig</key>
-		<string>0x08</string>
+		<string>0x28</string>
 		<key>CsrActiveConfig</key>
 		<string>0x0</string>
 	</dict>
@@ -230,7 +230,7 @@
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>BoardSerialNumber</key>
-		<string>C02JT1EGDNMP159AE</string>
+		<string>C02L6OICF8JCA87FE</string>
 		<key>BoardType</key>
 		<integer>10</integer>
 		<key>ChassisAssetTag</key>
@@ -248,11 +248,11 @@
 		<key>ProductName</key>
 		<string>iMac14,2</string>
 		<key>SerialNumber</key>
-		<string>C02JT1EGDNMP</string>
+		<string>C02L6OICF8JC</string>
 		<key>SmUUID</key>
-		<string>12345678-1234-1234-1234-123456789012</string>
+		<string>5AC4F1DD-13F9-4C4F-A924-D2F7F46A74DD</string>
 		<key>Trust</key>
-		<true/>
+		<false/>
 		<key>Version</key>
 		<string>1.0</string>
 	</dict>
