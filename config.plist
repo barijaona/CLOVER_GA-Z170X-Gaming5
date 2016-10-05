@@ -134,7 +134,7 @@
 		<key>Scan</key>
 		<true/>
 		<key>Theme</key>
-		<string>embedded</string>
+		<string>black_green</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
