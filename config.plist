@@ -12,6 +12,11 @@
 			<false/>
 			<key>Name</key>
 			<string>DSDT.aml</string>
+			<key>Fixes</key>
+			<dict>
+				<key>AddDTGP_0001</key>
+				<true/>
+			</dict>
 			<key>Patches</key>
 			<array>
 				<dict>
