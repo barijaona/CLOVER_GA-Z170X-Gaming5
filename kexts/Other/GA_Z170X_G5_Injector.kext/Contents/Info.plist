@@ -27,7 +27,7 @@
 			<key>IOClass</key>
 			<string>AppleUSBXHCILPTH</string>
 			<key>IOPCIPrimaryMatch</key>
-			<string>0x15b68086</string>
+			<string>0xa12f8086</string>
 			<key>IOPCITunnelCompatible</key>
 			<true/>
 			<key>IOProbeScore</key>
