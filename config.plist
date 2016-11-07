@@ -12,6 +12,11 @@
 			<false/>
 			<key>Name</key>
 			<string>DSDT.aml</string>
+			<key>Fixes</key>
+			<dict>
+				<key>AddDTGP_0001</key>
+				<true/>
+			</dict>
 			<key>Patches</key>
 			<array>
 				<dict>
@@ -53,6 +58,8 @@
 			<key>Generate</key>
 			<false/>
 		</dict>
+		<key>smartUPS</key>
+		<true/>
 	</dict>
 	<key>Boot</key>
 	<dict>
@@ -61,13 +68,13 @@
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
-		<string>LastBootedVolume</string>
+		<string>Macintosh HD</string>
 		<key>Legacy</key>
 		<string>PBR</string>
 		<key>Secure</key>
 		<false/>
 		<key>Timeout</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>XMPDetection</key>
 		<string>Yes</string>
 	</dict>
@@ -259,7 +266,7 @@
 	<key>SystemParameters</key>
 	<dict>
 		<key>InjectKexts</key>
-		<string>Yes</string>
+		<string>Detect</string>
 		<key>InjectSystemID</key>
 		<true/>
 		<key>NvidiaWeb</key>
