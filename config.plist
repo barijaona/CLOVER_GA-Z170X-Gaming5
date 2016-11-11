@@ -175,46 +175,6 @@
 		<true/>
 		<key>KextsToPatch</key>
 		<array>
-			<dict>
-				<key>Comment</key>
-				<string>10.11.4+-SKL-1912000-4_displays</string>
-				<key>Find</key>
-				<data>AQMDAw==</data>
-				<key>Name</key>
-				<string>AppleIntelSKLGraphicsFramebuffer</string>
-				<key>Replace</key>
-				<data>AQMEAw==</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>10.11.4-SKL-1912000-Port_0x5-DP2HDM</string>
-				<key>Find</key>
-				<data>AQUJAAAEAACHAQAA</data>
-				<key>Name</key>
-				<string>AppleIntelSKLGraphicsFramebuffer</string>
-				<key>Replace</key>
-				<data>AQUJAAAIAACHAQAA</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>10.11.4-SKL-1912000-Port_0x6-DP2HDM</string>
-				<key>Find</key>
-				<data>AgQKAAAEAACHAQAA</data>
-				<key>Name</key>
-				<string>AppleIntelSKLGraphicsFramebuffer</string>
-				<key>Replace</key>
-				<data>AgQKAAAIAACHAQAA</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>10.11.4-SKL-1912000-Port_0x7-DP2HDM</string>
-				<key>Find</key>
-				<data>AwYKAAAEAACHAQAA</data>
-				<key>Name</key>
-				<string>AppleIntelSKLGraphicsFramebuffer</string>
-				<key>Replace</key>
-				<data>AwYKAAAIAACHAQAA</data>
-			</dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
