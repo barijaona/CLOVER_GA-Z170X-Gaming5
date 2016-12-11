@@ -175,6 +175,22 @@
 		<true/>
 		<key>KextsToPatch</key>
 		<array>
+			<dict>
+				<key>Comment</key>
+				<string>[FredWst] NVIDIA Black Screen fix / Sierra</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				hcB0LEmLB0iNdaA=
+				</data>
+				<key>Name</key>
+				<string>AppleGraphicsDevicePolicy</string>
+				<key>Replace</key>
+				<data>
+				hcDrLEmLB0iNdaA=
+				</data>
+			</dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
