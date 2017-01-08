@@ -16,6 +16,8 @@
 			<dict>
 				<key>AddDTGP_0001</key>
 				<true/>
+				<key>FixShutdown_0004</key>
+				<true/>
 			</dict>
 			<key>Patches</key>
 			<array>
