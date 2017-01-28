@@ -5139,141 +5139,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -5340,6 +5206,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR0C)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP10)
@@ -5403,141 +5287,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -5604,6 +5354,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR0D)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP11)
@@ -5667,141 +5435,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -5868,6 +5502,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR0E)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP12)
@@ -5931,141 +5583,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -6132,6 +5650,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR0F)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP13)
@@ -6195,141 +5731,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -6396,6 +5798,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR10)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP01)
@@ -6459,141 +5879,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -6660,6 +5946,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR04)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP02)
@@ -6723,141 +6027,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -6924,6 +6094,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR05)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP03)
@@ -6987,141 +6175,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -7188,6 +6242,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR06)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP04)
@@ -7251,141 +6323,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -7452,6 +6390,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR07)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP05)
@@ -7515,141 +6471,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -7716,6 +6538,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR08)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP06)
@@ -7779,141 +6619,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -7985,6 +6691,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP07)
@@ -8048,141 +6772,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -8249,6 +6839,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR0A)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP08)
@@ -8312,141 +6920,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -8513,6 +6987,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR0B)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP17)
@@ -8576,141 +7068,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -8777,6 +7135,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR14)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP18)
@@ -8840,141 +7216,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -9041,6 +7283,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR15)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP19)
@@ -9104,141 +7364,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -9305,6 +7431,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR16)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP20)
@@ -9368,141 +7512,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -9569,6 +7579,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR17)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP14)
@@ -9632,141 +7660,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -9833,6 +7727,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR11)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP15)
@@ -9896,141 +7808,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -10097,6 +7875,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
                     Return (PR12)
                 }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
+                }
             }
 
             Device (RP16)
@@ -10160,141 +7956,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                    {
-                        While (One)
-                        {
-                            Store (ToInteger (Arg2), _T_0)
-                            If (LEqual (_T_0, Zero))
-                            {
-                                Name (OPTS, Buffer (0x02)
-                                {
-                                     0x00, 0x00                                     
-                                })
-                                CreateBitField (OPTS, Zero, FUN0)
-                                CreateBitField (OPTS, 0x04, FUN4)
-                                CreateBitField (OPTS, 0x06, FUN6)
-                                CreateBitField (OPTS, 0x08, FUN8)
-                                CreateBitField (OPTS, 0x09, FUN9)
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    Store (One, FUN0)
-                                    If (LTRE)
-                                    {
-                                        Store (One, FUN6)
-                                    }
-
-                                    If (OBFF)
-                                    {
-                                        Store (One, FUN4)
-                                    }
-
-                                    If (LEqual (ECR1, One))
-                                    {
-                                        If (LGreaterEqual (Arg1, 0x03))
-                                        {
-                                            Store (One, FUN8)
-                                            Store (One, FUN9)
-                                        }
-                                    }
-                                }
-
-                                Return (OPTS)
-                            }
-                            ElseIf (LEqual (_T_0, 0x04))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (OBFN)
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                    Else
-                                    {
-                                        Return (Buffer (0x10)
-                                        {
-                                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                            /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                        })
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x06))
-                            {
-                                If (LGreaterEqual (Arg1, 0x02))
-                                {
-                                    If (LTRN)
-                                    {
-                                        If (LOr (LEqual (LMSL, Zero), LEqual (LNSL, Zero)))
-                                        {
-                                            If (LEqual (PCHS, SPTH))
-                                            {
-                                                Store (0x0846, LMSL)
-                                                Store (0x0846, LNSL)
-                                            }
-                                            ElseIf (LEqual (PCHS, SPTL))
-                                            {
-                                                Store (0x1003, LMSL)
-                                                Store (0x1003, LNSL)
-                                            }
-                                        }
-
-                                        Store (And (ShiftRight (LMSL, 0x0A), 0x07), Index (LTRV, Zero))
-                                        Store (And (LMSL, 0x03FF), Index (LTRV, One))
-                                        Store (And (ShiftRight (LNSL, 0x0A), 0x07), Index (LTRV, 0x02))
-                                        Store (And (LNSL, 0x03FF), Index (LTRV, 0x03))
-                                        Return (LTRV)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x08))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (One)
-                                    }
-                                }
-                            }
-                            ElseIf (LEqual (_T_0, 0x09))
-                            {
-                                If (LEqual (ECR1, One))
-                                {
-                                    If (LGreaterEqual (Arg1, 0x03))
-                                    {
-                                        Return (Package (0x05)
-                                        {
-                                            0xC350, 
-                                            Ones, 
-                                            Ones, 
-                                            0xC350, 
-                                            Ones
-                                        })
-                                    }
-                                }
-                            }
-
-                            Break
-                        }
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -10360,6 +8022,24 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     }
 
                     Return (PR13)
+                }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero))
+                    {
+                        Return (Buffer (One)
+                        {
+                            0x03
+                        })
+                    }
+                    Return (Package (0x02)
+                    {
+                        "reg-ltrovr",
+                        Buffer (0x08)
+                        {
+                            0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                        }
+                    })
                 }
             }
         }
