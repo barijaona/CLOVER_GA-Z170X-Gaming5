@@ -66,7 +66,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 darkwake=1</string>
+		<string>-fakesmc-use-nvram dart=0 darkwake=1</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
