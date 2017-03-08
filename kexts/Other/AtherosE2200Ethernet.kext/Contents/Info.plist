@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>14F1505</string>
+	<string>16D32</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -17,25 +17,29 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.0</string>
+	<string>2.2.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>2.1.0</string>
+	<string>2.2.1</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>6E35b</string>
+	<string>8C1002</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>13F34</string>
+	<string>16C58</string>
 	<key>DTSDKName</key>
-	<string>macosx10.9</string>
+	<string>macosx10.12</string>
 	<key>DTXcode</key>
-	<string>0640</string>
+	<string>0821</string>
 	<key>DTXcodeBuild</key>
-	<string>6E35b</string>
+	<string>8C1002</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>AtherosE2200</key>
@@ -43,11 +47,11 @@
 			<key>CFBundleIdentifier</key>
 			<string>com.insanelymac.AtherosE2200Ethernet</string>
 			<key>Driver_Version</key>
-			<string>2.1.0</string>
+			<string>2.2.1</string>
 			<key>IOClass</key>
 			<string>AtherosE2200</string>
 			<key>IOPCIMatch</key>
-			<string>0x10901969 0x10911969 0x10A01969 0x10A11969 0xE0911969 0xE0A11969</string>
+			<string>0x10901969 0x10911969 0x10A01969 0x10A11969 0xE0911969 0xE0A11969 0xE0B11969</string>
 			<key>IOProbeScore</key>
 			<integer>1000</integer>
 			<key>IOProviderClass</key>
@@ -59,7 +63,9 @@
 			<key>enableTSO6</key>
 			<true/>
 			<key>maxIntrRate</key>
-			<integer>5000</integer>
+			<integer>6500</integer>
+			<key>rxPolling</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>

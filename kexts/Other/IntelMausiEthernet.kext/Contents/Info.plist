@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>15F34</string>
+	<string>15G1004</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.0</string>
+	<string>2.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -25,7 +25,7 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.1.0</string>
+	<string>2.2.0</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -47,7 +47,7 @@
 			<key>CFBundleIdentifier</key>
 			<string>com.insanelymac.IntelMausiEthernet</string>
 			<key>Driver_Version</key>
-			<string>2.1.0</string>
+			<string>2.2.0</string>
 			<key>IOClass</key>
 			<string>IntelMausi</string>
 			<key>IOPCIMatch</key>
@@ -59,9 +59,9 @@
 			<key>enableCSO6</key>
 			<true/>
 			<key>enableTSO4</key>
-			<true/>
+			<false/>
 			<key>enableTSO6</key>
-			<true/>
+			<false/>
 			<key>maxIntrRate</key>
 			<integer>7000</integer>
 		</dict>
