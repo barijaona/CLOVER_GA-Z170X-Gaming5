@@ -101,8 +101,6 @@
 			<string>0x0</string>
 			<key>SATA</key>
 			<string>0x0</string>
-			<key>WIFI</key>
-			<string>0x0</string>
 			<key>XHCI</key>
 			<string>0x0</string>
 		</dict>
