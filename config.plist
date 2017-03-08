@@ -87,23 +87,6 @@
 	</dict>
 	<key>Devices</key>
 	<dict>
-		<key>FakeID</key>
-		<dict>
-			<key>ATI</key>
-			<string>0x0</string>
-			<key>IMEI</key>
-			<string>0x0</string>
-			<key>IntelGFX</key>
-			<string>0x0</string>
-			<key>LAN</key>
-			<string>0x0</string>
-			<key>NVidia</key>
-			<string>0x0</string>
-			<key>SATA</key>
-			<string>0x0</string>
-			<key>XHCI</key>
-			<string>0x0</string>
-		</dict>
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
