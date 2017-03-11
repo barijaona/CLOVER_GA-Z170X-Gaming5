@@ -162,22 +162,6 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>[FredWst] NVIDIA Black Screen fix / Sierra</string>
-				<key>Disabled</key>
-				<false/>
-				<key>Find</key>
-				<data>
-				hcB0LEmLB0iNdaA=
-				</data>
-				<key>Name</key>
-				<string>AppleGraphicsDevicePolicy</string>
-				<key>Replace</key>
-				<data>
-				hcDrLEmLB0iNdaA=
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
 				<string>10.11.4+-SKL-1912000-4_displays</string>
 				<key>Find</key>
 				<data>AQMDAw==</data>
