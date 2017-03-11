@@ -13,7 +13,7 @@ To sumarize the hardware :
 
 Particularity of this configuration : I can use a vanilla macOS installation (tested with Sierra 10.12 and El Capitan 10.11.6) ! SIP is enabled like in a stock Mac.
 
-Clover version currently used : r3763
+Clover version currently used : r3974 with [fixed NVRAM save script](http://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?p=2378906).
 
 Some personal details, especially SMBIOS serial numbers and SmUUID, are not published in this public repository. Values you can see are only placeholders. There are [good references on generating appropriate values](http://www.fitzweekly.com/2016/02/hackintosh-imessage-tutorial.html "FitzSimmons weekly"), but take care that Clover Configurator might mess with other settings.
 

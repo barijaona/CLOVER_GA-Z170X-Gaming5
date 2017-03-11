@@ -1,4 +1,8 @@
 /*
+ *
+ * Generated through Pike R. Alpha's ssdtPRGen.sh
+ * https://github.com/Piker-Alpha/ssdtPRGen.sh
+ *
  * Intel ACPI Component Architecture
  * AML Disassembler version 20140210-00 [Feb 10 2014]
  * Copyright (c) 2000 - 2014 Intel Corporation

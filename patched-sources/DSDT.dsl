@@ -1,4 +1,10 @@
 /*
+ * Patched with :
+ * - Rehabman's [sys] Slylake LPC (to activate AppleLPC.kext)
+ * - syscl's proposal to set tolerance latency for PCI devices :
+ *           http://www.insanelymac.com/forum/topic/320561-Enable-IOPCIFamily-to-set-tolerance-latency-for-PCI-devices
+ *
+ *
  * Intel ACPI Component Architecture
  * AML/ASL+ Disassembler version 20160422-64(RM)
  * Copyright (c) 2000 - 2016 Intel Corporation
