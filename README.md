@@ -11,9 +11,9 @@ To sumarize the hardware :
 - Graphics card : MSI GTX960 GAMING 2G
 - Wifi/Bluetooth : built from a genuine Apple Airport card, which uses a BCM94360CD chipset.
 
-Particularity of this configuration : I can use a vanilla macOS installation (tested with Sierra 10.12 and El Capitan 10.11.6) ! SIP is enabled like in a stock Mac.
+Particularity of this configuration : I can use a vanilla macOS installation (Sierra 10.12 latest production release) ! SIP is enabled like in a stock Mac.
 
-Clover version currently used : r3974 with [fixed NVRAM save script](http://www.insanelymac.com/forum/topic/284656-clover-general-discussion/?p=2378906).
+I keep the Clover version relatively current, but do not systematically update, unless a new macOS version is released (going from 10.12.3 to 10.12.4 for instance.
 
 Some personal details, especially SMBIOS serial numbers and SmUUID, are not published in this public repository. Values you can see are only placeholders. There are [good references on generating appropriate values](http://www.fitzweekly.com/2016/02/hackintosh-imessage-tutorial.html "FitzSimmons weekly"), but take care that Clover Configurator might mess with other settings.
 
