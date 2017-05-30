@@ -15,7 +15,7 @@ Particularity of this configuration : I can use a vanilla macOS installation (Si
 
 I keep the Clover version relatively current, but do not systematically update, unless a new macOS version is released (going from 10.12.3 to 10.12.4 for instance.
 
-Some personal details, especially SMBIOS serial numbers and SmUUID, are not published in this public repository. Values you can see are only placeholders. There are [good references on generating appropriate values](http://www.fitzweekly.com/2016/02/hackintosh-imessage-tutorial.html "FitzSimmons weekly"), but take care that Clover Configurator might mess with other settings.
+Some personal details, especially SMBIOS SerialNumber, BoardSerialNumber and SmUUID from `config.plist`, are not published in this public repository. There are [good references on generating appropriate values](http://www.fitzweekly.com/2016/02/hackintosh-imessage-tutorial.html "FitzSimmons weekly"), but take care that Clover Configurator might mess with other settings.
 
 For increased legitibility, sources or .dsl of DSDT/SSDT patches (which are .aml files in the `ACPI/patched` folder) are available in the `patched-sources` folder.
 
