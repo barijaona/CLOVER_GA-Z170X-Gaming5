@@ -10,8 +10,6 @@
 			<false/>
 			<key>DropOEM_DSM</key>
 			<false/>
-			<key>Name</key>
-			<string>DSDT.aml</string>
 			<key>Fixes</key>
 			<dict>
 				<key>AddDTGP_0001</key>
@@ -19,6 +17,8 @@
 				<key>FixShutdown_0004</key>
 				<true/>
 			</dict>
+			<key>Name</key>
+			<string>DSDT.aml</string>
 			<key>Patches</key>
 			<array>
 				<dict>
@@ -108,10 +108,6 @@
 		<dict>
 			<key>AddClockID</key>
 			<true/>
-			<key>FixOwnership</key>
-			<true/>
-			<key>Inject</key>
-			<true/>
 		</dict>
 	</dict>
 	<key>DisableDrivers</key>
@@ -121,7 +117,7 @@
 	<key>GUI</key>
 	<dict>
 		<key>Language</key>
-		<string>fr:0</string>
+		<string>en:0</string>
 		<key>Mouse</key>
 		<dict>
 			<key>DoubleClick</key>
@@ -133,8 +129,6 @@
 			<key>Speed</key>
 			<integer>8</integer>
 		</dict>
-		<key>Scan</key>
-		<true/>
 		<key>Theme</key>
 		<string>embedded</string>
 	</dict>
@@ -257,7 +251,7 @@
 	<key>SystemParameters</key>
 	<dict>
 		<key>InjectKexts</key>
-		<string>Detect</string>
+		<string>Yes</string>
 		<key>InjectSystemID</key>
 		<true/>
 		<key>NvidiaWeb</key>
