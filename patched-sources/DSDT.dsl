@@ -1,4 +1,8 @@
 /*
+ * Patched with :
+ * - Rehabman's [sys] Slylake LPC (to activate AppleLPC.kext)
+ *
+ *
  * Intel ACPI Component Architecture
  * AML/ASL+ Disassembler version 20161210-64(RM)
  * Copyright (c) 2000 - 2016 Intel Corporation
@@ -144,7 +148,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
     External (_TZ_.TZ01, DeviceObj)    // (from opcode)
     External (AL6F, MethodObj)    // Warning: Unknown method, guessing 0 arguments
     External (ALSE, UnknownObj)    // (from opcode)
-    External (BNUM, UnknownObj)    // (from opcode)
     External (BRTL, UnknownObj)    // (from opcode)
     External (CRBI, UnknownObj)    // (from opcode)
     External (DIDX, UnknownObj)    // (from opcode)
@@ -5328,6 +5331,14 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
                     {
                         Return (Zero)
                     }
+                }
+                Method (_DSM, 4, NotSerialized)
+                {
+                    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                    Return (Package()
+                    {
+                        "compatible", "pci8086,9cc1",
+                    })
                 }
             }
 
@@ -13249,18 +13260,6 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I ", 0x01072009)
 
     Scope (_SB.PCI0.LPCB)
     {
-        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-        {
-            If (PCIC (Arg0))
-            {
-                Return (PCID (Arg0, Arg1, Arg2, Arg3))
-            }
-
-            Return (Buffer (One)
-            {
-                 0x00                                           
-            })
-        }
 
         OperationRegion (LPC, PCI_Config, Zero, 0x0100)
         Field (LPC, AnyAcc, NoLock, Preserve)
