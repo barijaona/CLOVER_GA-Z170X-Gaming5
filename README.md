@@ -17,7 +17,7 @@ I keep the Clover version relatively current, but do not systematically update, 
 
 ### Points which require personalization
 
-####BIOS
+#### BIOS
 
 This board is notoriously picky regarding memory, so you might have to configure the BIOS with a single memory stick at first. I currently use BIOS F20, which runs OK after forcing the board to stick to the memory speed of 2133 MHz during initial startup.
 
