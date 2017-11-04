@@ -182,8 +182,6 @@
 		<string>Yes</string>
 		<key>InjectSystemID</key>
 		<true/>
-		<key>NvidiaWeb</key>
-		<true/>
 	</dict>
 </dict>
 </plist>
