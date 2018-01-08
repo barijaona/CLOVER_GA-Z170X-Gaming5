@@ -52,7 +52,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 darkwake=1 -hbfx-dump-nvram -hbfx-patch-pci shikigva=12</string>
+		<string>dart=0 darkwake=1 -hbfx-patch-pci shikigva=12</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
