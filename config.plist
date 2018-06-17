@@ -76,7 +76,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 darkwake=1 -hbfx-patch-pci</string>
+		<string>dart=0 darkwake=1</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
@@ -84,6 +84,8 @@
 		<key>StrictHibernate</key>
 		<true/>
 		<key>HibernationFixup</key>
+		<true/>
+		<key>RtcHibernateAware</key>
 		<true/>
 		<key>SignatureFixup</key>
 		<true/>
@@ -152,8 +154,6 @@
 	</dict>
 	<key>KernelAndKextPatches</key>
 	<dict>
-		<key>AppleRTC</key>
-		<true/>
 		<key>AsusAICPUPM</key>
 		<true/>
 		<key>Debug</key>
