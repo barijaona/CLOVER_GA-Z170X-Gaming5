@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>15G1611</string>
+	<string>17F77</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -27,7 +27,7 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>7D1014</string>
+	<string>9F1027a</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
@@ -35,9 +35,9 @@
 	<key>DTSDKName</key>
 	<string>macosx10.11</string>
 	<key>DTXcode</key>
-	<string>0731</string>
+	<string>0940</string>
 	<key>DTXcodeBuild</key>
-	<string>7D1014</string>
+	<string>9F1027a</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>ITE IT87x Monitor Plugin</key>
@@ -1922,6 +1922,80 @@
 						</dict>
 						<key>VIN8</key>
 						<string>VBAT</string>
+					</dict>
+					<key>Z87P-D3</key>
+					<dict>
+						<key>FANIN0</key>
+						<string>Processor Fan</string>
+						<key>FANIN1</key>
+						<string>System Fan1</string>
+						<key>FANIN2</key>
+						<string>System Fan2</string>
+						<key>FANIN3</key>
+						<string>System Fan2</string>
+						<key>FANIN4</key>
+						<string></string>
+						<key>SmartGuardian</key>
+						<true/>
+						<key>TEMPIN0</key>
+						<string>System</string>
+						<key>TEMPIN1</key>
+						<string>CPU</string>
+						<key>TEMPIN2</key>
+						<string>Ambient</string>
+						<key>VBATNeedUpdates</key>
+						<true/>
+						<key>VIN0</key>
+						<string>VID</string>
+						<key>VIN1</key>
+						<dict>
+							<key>Name</key>
+							<string>3VCC</string>
+							<key>Rf</key>
+							<integer>2050</integer>
+							<key>Ri</key>
+							<integer>1330</integer>
+							<key>VRef</key>
+							<integer>0</integer>
+						</dict>
+						<key>VIN2</key>
+						<dict>
+							<key>Name</key>
+							<string>+12VC</string>
+							<key>Ri</key>
+							<integer>5</integer>
+						</dict>
+						<key>VIN3</key>
+						<dict>
+							<key>Name</key>
+							<string>+5VC</string>
+							<key>Rf</key>
+							<integer>100</integer>
+							<key>Ri</key>
+							<integer>150</integer>
+							<key>VRef</key>
+							<integer>0</integer>
+						</dict>
+						<key>VIN4</key>
+						<string></string>
+						<key>VIN5</key>
+						<string>CPU</string>
+						<key>VIN6</key>
+						<string>Memory</string>
+						<key>VIN7</key>
+						<dict>
+							<key>Name</key>
+							<string>3VSB</string>
+							<key>Ri</key>
+							<integer>1</integer>
+						</dict>
+						<key>VIN8</key>
+						<dict>
+							<key>Name</key>
+							<string>VBAT</string>
+							<key>Ri</key>
+							<integer>1</integer>
+						</dict>
 					</dict>
 				</dict>
 				<key>Shuttle</key>
