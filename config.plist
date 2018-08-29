@@ -112,7 +112,9 @@
 			<integer>8</integer>
 		</dict>
 		<key>Theme</key>
-		<string>BGM</string>
+		<string>embedded</string>
+		<key>EmbeddedThemeType</key>
+		<string>Dark</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
