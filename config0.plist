@@ -10,13 +10,13 @@
 			<false/>
 			<key>DropOEM_DSM</key>
 			<false/>
-			<key>Name</key>
-			<string>DSDT.aml</string>
 			<key>Fixes</key>
 			<dict>
 				<key>AddDTGP_0001</key>
 				<true/>
 			</dict>
+			<key>Name</key>
+			<string>DSDT.aml</string>
 			<key>Patches</key>
 			<array>
 				<dict>
@@ -31,20 +31,6 @@
 					<key>Replace</key>
 					<data>
 					SERFRg==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change HECI to IMEI</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					SEVDSQ==
-					</data>
-					<key>Replace</key>
-					<data>
-					SU1FSQ==
 					</data>
 				</dict>
 			</array>
@@ -83,25 +69,6 @@
 	</dict>
 	<key>Devices</key>
 	<dict>
-		<key>FakeID</key>
-		<dict>
-			<key>ATI</key>
-			<string>0x0</string>
-			<key>IMEI</key>
-			<string>0x0</string>
-			<key>IntelGFX</key>
-			<string>0x0</string>
-			<key>LAN</key>
-			<string>0x0</string>
-			<key>NVidia</key>
-			<string>0x0</string>
-			<key>SATA</key>
-			<string>0x0</string>
-			<key>WIFI</key>
-			<string>0x0</string>
-			<key>XHCI</key>
-			<string>0x0</string>
-		</dict>
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
@@ -124,7 +91,7 @@
 	<key>GUI</key>
 	<dict>
 		<key>Language</key>
-		<string>fr:0</string>
+		<string>en:0</string>
 		<key>Mouse</key>
 		<dict>
 			<key>DoubleClick</key>
@@ -136,8 +103,6 @@
 			<key>Speed</key>
 			<integer>8</integer>
 		</dict>
-		<key>Scan</key>
-		<true/>
 		<key>Theme</key>
 		<string>embedded</string>
 	</dict>
@@ -173,22 +138,6 @@
 		<true/>
 		<key>KextsToPatch</key>
 		<array>
-			<dict>
-				<key>Comment</key>
-				<string>[FredWst] NVIDIA Black Screen fix / Sierra</string>
-				<key>Disabled</key>
-				<false/>
-				<key>Find</key>
-				<data>
-				hcB0LEmLB0iNdaA=
-				</data>
-				<key>Name</key>
-				<string>AppleGraphicsDevicePolicy</string>
-				<key>Replace</key>
-				<data>
-				hcDrLEmLB0iNdaA=
-				</data>
-			</dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
