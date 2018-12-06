@@ -8,7 +8,7 @@ To sumarize the hardware :
 
 - Motherboard : Gigabyte GA-Z170X-Gaming 5 (rev 1.0)
 - CPU : Intel Skylake Core i5-6600K 3.5 - 3.9 GHz
-- Graphics card : MSI GTX960 GAMING 2G
+- Graphics card : <del>MSI GTX960 GAMING 2G</del> (__starting from version v/2.0__) : PowerColor RadeonRX580
 - Wifi/Bluetooth : built from a genuine Apple Airport card, which uses a BCM94360CD chipset.
 
 Particularity of this configuration : I can use a vanilla macOS installation (High Sierra 10.13 latest production release) ! SIP is enabled like in a stock Mac.
