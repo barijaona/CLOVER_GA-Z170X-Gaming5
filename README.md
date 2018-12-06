@@ -11,9 +11,9 @@ To sumarize the hardware :
 - Graphics card : <del>MSI GTX960 GAMING 2G</del> (__starting from version v/2.0__) : PowerColor RadeonRX580
 - Wifi/Bluetooth : built from a genuine Apple Airport card, which uses a BCM94360CD chipset.
 
-Particularity of this configuration : I can use a vanilla macOS installation (High Sierra 10.13 latest production release) ! SIP is enabled like in a stock Mac.
+Particularity of this configuration : I can use a vanilla macOS installation (High Sierra 10.14 latest production release) ! SIP is enabled like in a stock Mac.
 
-I keep the Clover version relatively current, but do not systematically update, unless a new macOS version is released (going from 10.12.3 to 10.12.4 for instance).
+I keep the Clover version relatively current, but do not systematically update, unless a new macOS version is released (going from 10.14.0 to 10.14.1 for instance).
 
 ### Points which require personalization
 
