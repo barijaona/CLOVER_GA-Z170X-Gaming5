@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>17F77</string>
+	<string>17G65</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>GeforceSensor</string>
+	<string>RadeonMonitor</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.kozlek.GeforceSensor</string>
+	<string>org.slice.RadeonMonitor</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.3</string>
+	<string>1.3.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -23,11 +23,11 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.2.3</string>
+	<string>1.3.4</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>9F1027a</string>
+	<string>9F2000</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
@@ -35,21 +35,21 @@
 	<key>DTSDKName</key>
 	<string>macosx10.11</string>
 	<key>DTXcode</key>
-	<string>0940</string>
+	<string>0941</string>
 	<key>DTXcodeBuild</key>
-	<string>9F1027a</string>
+	<string>9F2000</string>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>Nouveau nVidia Cards Monitoring Plugin</key>
+		<key>Radeon Cards Monitoring Plugin</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>org.kozlek.GeforceSensor</string>
+			<string>org.slice.RadeonMonitor</string>
 			<key>IOClass</key>
-			<string>GeforceSensors</string>
+			<string>RadeonMonitor</string>
 			<key>IOMatchCategory</key>
-			<string>GeforceSensor</string>
+			<string>RadeonMonitor</string>
 			<key>IOProbeScore</key>
-			<integer>1000</integer>
+			<integer>500</integer>
 			<key>IOProviderClass</key>
 			<string>IOResources</string>
 			<key>IOResourceMatch</key>
@@ -64,14 +64,10 @@
 		<string>9.0.0</string>
 		<key>com.apple.kpi.libkern</key>
 		<string>9.0.0</string>
-		<key>com.apple.kpi.mach</key>
-		<string>9.0.0</string>
 		<key>com.apple.kpi.unsupported</key>
 		<string>9.0.0</string>
 		<key>org.netkas.FakeSMC</key>
 		<string>3.3.0</string>
 	</dict>
-	<key>OSBundleRequired</key>
-	<string>Root</string>
 </dict>
 </plist>
