@@ -120,8 +120,6 @@
   <dict>
     <key>Inject</key>
     <dict>
-      <key>RadeonDeInit</key>
-      <true/>
       <key>ATI</key>
       <false/>
       <key>Intel</key>
