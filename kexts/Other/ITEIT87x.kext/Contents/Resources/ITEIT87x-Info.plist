@@ -3,41 +3,37 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>17G8029</string>
+	<string>11D50b</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>ITEIT87x</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.mozodojo.ITEIT87x</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.6</string>
+	<string>$(MODULE_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleSupportedPlatforms</key>
-	<array>
-		<string>MacOSX</string>
-	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.6</string>
+	<string>$(MODULE_VERSION)</string>
 	<key>DTCompiler</key>
-	<string>com.apple.compilers.llvm.clang.1_0</string>
+	<string>4.2</string>
 	<key>DTPlatformBuild</key>
-	<string>10B61</string>
+	<string>4D502</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>15E60</string>
+	<string>11D50b</string>
 	<key>DTSDKName</key>
-	<string>macosx10.11</string>
+	<string></string>
 	<key>DTXcode</key>
-	<string>1010</string>
+	<string>0421</string>
 	<key>DTXcodeBuild</key>
-	<string>10B61</string>
+	<string>4D502</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>ITE IT87x Monitor Plugin</key>
@@ -1054,6 +1050,77 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>Z170X-UD5 TH-CF</key>
+					<dict>
+						<key>FANIN0</key>
+						<string>CPUFan</string>
+						<key>FANIN1</key>
+						<string>SysFan</string>
+						<key>FANIN2</key>
+						<string></string>
+						<key>FANIN3</key>
+						<string></string>
+						<key>FANIN4</key>
+						<string></string>
+						<key>SmartGuardian</key>
+						<false/>
+						<key>TEMPIN0</key>
+						<string>System</string>
+						<key>TEMPIN1</key>
+						<string>Memory</string>
+						<key>TEMPIN2</key>
+						<string>Ambient</string>
+						<key>VBATNeedUpdates</key>
+						<true/>
+						<key>VIN0</key>
+						<string>CPU</string>
+						<key>VIN1</key>
+						<dict>
+							<key>Name</key>
+							<string>Memory</string>
+							<key>Ri</key>
+							<integer>3</integer>
+						</dict>
+						<key>VIN2</key>
+						<dict>
+							<key>Name</key>
+							<string>+12VC</string>
+							<key>Ri</key>
+							<integer>3</integer>
+						</dict>
+						<key>VIN3</key>
+						<dict>
+							<key>Name</key>
+							<string>VBAT</string>
+							<key>Ri</key>
+							<integer>1</integer>
+						</dict>
+						<key>VIN4</key>
+						<string></string>
+						<key>VIN5</key>
+						<dict>
+							<key>Name</key>
+							<string>3VCC</string>
+							<key>Ri</key>
+							<integer>2</integer>
+						</dict>
+						<key>VIN6</key>
+						<string></string>
+						<key>VIN7</key>
+						<dict>
+							<key>Name</key>
+							<string>+5VC</string>
+							<key>Ri</key>
+							<integer>2</integer>
+						</dict>
+						<key>VIN8</key>
+						<dict>
+							<key>Name</key>
+							<string>3VSB</string>
+							<key>Ri</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
 					<key>H67A-UD3H-B3</key>
 					<dict>
 						<key>FANIN0</key>
@@ -1602,77 +1669,6 @@
 						<string></string>
 						<key>VIN8</key>
 						<string>VBAT</string>
-					</dict>
-					<key>Z170X-UD5 TH-CF</key>
-					<dict>
-						<key>FANIN0</key>
-						<string>CPUFan</string>
-						<key>FANIN1</key>
-						<string>SysFan</string>
-						<key>FANIN2</key>
-						<string></string>
-						<key>FANIN3</key>
-						<string></string>
-						<key>FANIN4</key>
-						<string></string>
-						<key>SmartGuardian</key>
-						<false/>
-						<key>TEMPIN0</key>
-						<string>System</string>
-						<key>TEMPIN1</key>
-						<string>Memory</string>
-						<key>TEMPIN2</key>
-						<string>Ambient</string>
-						<key>VBATNeedUpdates</key>
-						<true/>
-						<key>VIN0</key>
-						<string>CPU</string>
-						<key>VIN1</key>
-						<dict>
-							<key>Name</key>
-							<string>Memory</string>
-							<key>Ri</key>
-							<integer>3</integer>
-						</dict>
-						<key>VIN2</key>
-						<dict>
-							<key>Name</key>
-							<string>+12VC</string>
-							<key>Ri</key>
-							<integer>3</integer>
-						</dict>
-						<key>VIN3</key>
-						<dict>
-							<key>Name</key>
-							<string>VBAT</string>
-							<key>Ri</key>
-							<integer>1</integer>
-						</dict>
-						<key>VIN4</key>
-						<string></string>
-						<key>VIN5</key>
-						<dict>
-							<key>Name</key>
-							<string>3VCC</string>
-							<key>Ri</key>
-							<integer>2</integer>
-						</dict>
-						<key>VIN6</key>
-						<string></string>
-						<key>VIN7</key>
-						<dict>
-							<key>Name</key>
-							<string>+5VC</string>
-							<key>Ri</key>
-							<integer>2</integer>
-						</dict>
-						<key>VIN8</key>
-						<dict>
-							<key>Name</key>
-							<string>3VSB</string>
-							<key>Ri</key>
-							<integer>1</integer>
-						</dict>
 					</dict>
 					<key>Z68A-D3H-B3</key>
 					<dict>
