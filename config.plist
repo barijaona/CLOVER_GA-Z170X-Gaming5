@@ -52,7 +52,7 @@
   <key>Boot</key>
   <dict>
     <key>Arguments</key>
-    <string>dart=0 darkwake=1</string>
+    <string></string>
     <key>Debug</key>
     <false/>
     <key>DefaultVolume</key>
