@@ -1,5 +1,7 @@
 # EFI/CLOVER for Gigabyte Z170X-Gaming 5 based Customac
 
+***Important update : I don't maintain this project anymore, as I have switched to an [OpenCore configuration](https://github.com/barijaona/OpenCore_GA-Z170X-Gaming5) due to better memory management.***
+
 This is to document the software part of a Customac build, especially the CLOVER folder in the EFI System Partition of my SSD.
 
 Philosophy of the build and hardware choice are described more extensively (in French) [in a series of articles on my blog](http://blog.barijaona.com/macintosh/Jirokaki/ "Jirōkaki on barijaona.com").
